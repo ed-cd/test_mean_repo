@@ -1,0 +1,28 @@
+<html ng-app='myApp'>
+
+<head>
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <script src='js/angular.js' /></script>
+    <script src='js/angular-route.js' /></script>
+    <script src='bower_components/angular-cache-buster/angular-cache-buster.js' /></script>
+    <script src='js/underscore.js' /></script>
+    <script src='angular/routes/MainRoutes.js' /></script>
+    <script src='angular/services/CustomersService.js' /></script>
+    <script src='angular/factories/ProductsFactory.js' /></script>
+    <script src='angular/controllers/CustomersController.js' /></script>
+    <script src='angular/controllers/OrdersController.js' /></script>
+    <script src='angular/filters/RangeFilter.js' /></script>
+    <script src='angular/modules/underscore.js' /></script>
+    <script src='angular/modules/main.js' /></script>
+    <!--<script src='angular/main.js' /></script>-->
+</head>
+
+<body>
+    <div>
+        <a href="#/orders">Orders</a>||<a href="#/">Customers</a>
+    </div>
+    <div ng-view=""></div>
+    <!--<script src="bower_components/requirejs/require.js" data-main="angular/main.js"></script>-->
+</body>
+
+</html>

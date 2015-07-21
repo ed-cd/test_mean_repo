@@ -1,0 +1,10 @@
+{
+    "name": "Message_Board",
+    "description": "Message Board",
+    "dependencies": {
+        "body-parser": "*",
+        "ejs": "*",
+        "express": "*",
+        "mongoose": "*"
+    }
+}
