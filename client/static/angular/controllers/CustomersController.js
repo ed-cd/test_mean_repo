@@ -1,4 +1,4 @@
-var CustomersController = function ($scope, ProductsFactory, CustomersService, $timeout, _) {
+var CustomersController = function ($scope, CustomersService, $timeout, _) {
     $scope.customers = [];
     $scope.addNameError = "";
 

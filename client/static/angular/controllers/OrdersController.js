@@ -1,4 +1,4 @@
-var OrdersController = function ($scope, ProductsFactory, CustomersService, $timeout, _, $http) {
+var OrdersController = function ($scope, ProductsService, CustomersService, OrdersFactory, $timeout, _, $http) {
     $scope.customers = [];
     $scope.addOrderError = "";
     $scope.orders = [];
@@ -7,9 +7,14 @@ var OrdersController = function ($scope, ProductsFactory, CustomersService, $tim
         $scope.customers = data;
     })
 
-    ProductsFactory.getProducts(function (data) {
+    ProductsService.getProducts(function (data) {
         $scope.products = data;
     })
+
+    OrdersFactory.getOrders(function (data) {
+        $scope.orders = data;
+    })
+
 
     var flashError = function (error) {
         $scope.addOrderError = error;
@@ -26,28 +31,15 @@ var OrdersController = function ($scope, ProductsFactory, CustomersService, $tim
                 ammount: $scope.newOrder.ammount,
                 dateCreated: Date.now()
             }
-
-            $http.post("/orders", newOrder).error(function (data, status, headers, config) {
-                if (status == 501) {
-                    flashError("Not enough stock");
-                } else {
-                    flashError("couldnt add customer because of:" + data);
-                }
-            }).success(function (data, status, headers, config) {
+            OrdersFactory.addOrder(newOrder, function (newOrder, newStockAfterorder) {
                 $scope.orders.push(newOrder);
                 $scope.newOrder = {};
-                if (data.newStock <= 0) {
+                if (newStockAfterorder <= 0) {
                     $scope.products.splice($scope.products.indexOf($scope.newOrder.product), 1);
                 }
-            })
+            });
         } else {
             flashError("fields missing");
         }
     }
-
-    $http.get('/orders').success(function (output) {
-        $scope.orders = output;
-    }).error(function (data, status, headers, config) {
-        flashError("couldnt get orders from the database because of:" + data);
-    })
 }

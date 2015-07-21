@@ -2,9 +2,10 @@ var myAppModule = angular.module('myApp', ['ngRoute', "underScore", "ngCacheBust
     httpRequestInterceptorCacheBusterProvider.setMatchlist([/.*images.*/]);
 });
 
-myAppModule.config(["$routeProvider", MainRoutes])
-myAppModule.factory("ProductsFactory", ProductsFactory)
+myAppModule.config(["$routeProvider", MainRoutes]);
+myAppModule.service("ProductsService", ProductsService);
 myAppModule.service("CustomersService", CustomersService);
+myAppModule.factory("OrdersFactory", OrdersFactory);
 myAppModule.controller('CustomersController', CustomersController);
 myAppModule.controller('OrdersController', OrdersController);
 myAppModule.filter('RangeFilter', RangeFilter);

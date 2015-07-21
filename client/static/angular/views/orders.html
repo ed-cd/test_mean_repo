@@ -25,7 +25,7 @@
             <th>Quantity</th>
             <th>Date</th>
         </tr>
-        <tr ng-repeat="order in orders | orderBy:'customerName' | filter:searchName">
+        <tr ng-repeat="order in orders | orderBy:dateCreated:true| filter:searchName">
             <td>
                 <span ng-bind="order.customerName" />
             </td>
