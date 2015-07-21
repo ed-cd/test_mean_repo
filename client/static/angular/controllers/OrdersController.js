@@ -28,10 +28,17 @@ var OrdersController = function ($scope, ProductsFactory, CustomersService, $tim
             }
 
             $http.post("/orders", newOrder).error(function (data, status, headers, config) {
-                flashError("couldnt add customer because of:" + data);
+                if (status == 501) {
+                    flashError("Not enough stock");
+                } else {
+                    flashError("couldnt add customer because of:" + data);
+                }
             }).success(function (data, status, headers, config) {
                 $scope.orders.push(newOrder);
                 $scope.newOrder = {};
+                if (data.newStock <= 0) {
+                    $scope.products.splice($scope.products.indexOf($scope.newOrder.product), 1);
+                }
             })
         } else {
             flashError("fields missing");
