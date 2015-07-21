@@ -4,7 +4,11 @@ module.exports = (function () {
 
     return {
         show: function (req, res) {
-            Products.find({}, function (err, results) {
+            Products.find({
+                stock: {
+                    $gte: 1
+                }
+            }, function (err, results) {
                 if (err) {
                     console.log(err);
                 } else {
