@@ -19,8 +19,16 @@ module.exports = function (app) {
         customers.remove(req, res);
     })
 
-    app.get("/products", function (req, res) {
-        products.show(req, res);
+    app.get("/availiableProducts", function (req, res) {
+        products.showAvailiable(req, res);
+    })
+
+    app.get("/allProducts", function (req, res) {
+        products.showAll(req, res);
+    })
+
+    app.post("/addProduct", function (req, res) {
+        products.add(req, res);
     })
 
     app.post("/orders", function (req, res) {

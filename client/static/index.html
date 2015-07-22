@@ -12,18 +12,18 @@
     <script src="angular/factories/OrdersFactory.js"></script>
     <script src='angular/controllers/CustomersController.js' /></script>
     <script src='angular/controllers/OrdersController.js' /></script>
+    <script src='angular/controllers/ProductsController.js' /></script>
     <script src='angular/filters/RangeFilter.js' /></script>
+    <script src='angular/filters/FieldGreaterThanFilter.js' /></script>
     <script src='angular/modules/underscore.js' /></script>
     <script src='angular/modules/main.js' /></script>
-    <!--<script src='angular/main.js' /></script>-->
 </head>
 
 <body>
-    <div>
-        <a href="#/orders">Orders</a>||<a href="#/">Customers</a>
+    <div class="nav">
+        <a href="#/products">Products</a>||<a href="#/orders">Orders</a>||<a href="#/">Customers</a>
     </div>
     <div ng-view=""></div>
-    <!--<script src="bower_components/requirejs/require.js" data-main="angular/main.js"></script>-->
 </body>
 
 </html>

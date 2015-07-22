@@ -1,34 +1,37 @@
-<div ng-controller='CustomersController'>
-    <h2>Add a new customer</h2>
-    <form>
-        <label for="name">Customer Name:</label>
-        <input type="text" name="name" ng-model="newCustomer.name" />
-        <input type="submit" value="Add" ng-click="addCustomer()" />
-        <span class="error">{{addNameError}}</span>
-    </form>
-    <table>
-        <tr>
-            <td></td>
-            <td></td>
-            <td>
-                <input type="text" name="searchName" placeholder="search name..." ng-model="searchName" />
-            </td>
-        </tr>
-        <tr>
-            <th>Customer Name</th>
-            <th>Created Date</th>
-            <th>Actions</th>
-        </tr>
-        <tr ng-repeat="customer in customers | orderBy:'-createdDate' | filter:searchName">
-            <td>
-                <span ng-bind="customer.name" />
-            </td>
-            <td>
-                {{customer.createdDate | date:"mediumDate"}}
-            </td>
-            <td>
-                <button ng-click="removeCustomer(customer)">Remove</button>
-            </td>
-        </tr>
-    </table>
+<div ng-controller='ProductsController'>
+    <div class="leftColumn">
+        <td>
+            <input type="text" name="searchName" placeholder="search..." ng-model="searchName" />
+        </td>
+        <h2><u>Add a new product</u></h2>
+        <form>
+            <label for="name">Product Name:</label>
+            <br/>
+            <input type="text" name="name" ng-model="newProduct.name" placeholder="name..." />
+            <br/>
+            <label for="imageUrl">Image (url):</label>
+            <br/>
+            <input type="text" name="imageUrl" ng-model="newProduct.imageUrl" placeholder="http://..." />
+            <br/>
+            <label for="stock">Initial Quantity:</label>
+            <br/>
+            <select name="stock" ng-model="newProduct.stock" ng-options="n for n in [] | RangeFilter:1:100" />
+            <input type="submit" value="Create" ng-click="addProduct()" />
+            <br/>
+            <div class="error">
+                <span class="error" ng-repeat="error in addProductErrors">
+                    <span ng-bind="error"></span>
+                <br/>
+                </span>
+            </div>
+        </form>
+    </div>
+    <div class="mainColumn">
+        <div class="productContainer " ng-repeat="product in products|orderBy:name|filter:searchName ">
+            <img ng-src="{{product.imageUrl }}" />
+            <div class="centered" ng-bind="product.name "></div>
+            <div class="centered" ng-bind="product.stock "></div>
+        </div>
+    </div>
+</div>
 </div>

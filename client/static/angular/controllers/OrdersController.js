@@ -7,7 +7,7 @@ var OrdersController = function ($scope, ProductsService, CustomersService, Orde
         $scope.customers = data;
     })
 
-    ProductsService.getProducts(function (data) {
+    ProductsService.getAvailiableProducts(function (data) {
         $scope.products = data;
     })
 
@@ -34,10 +34,8 @@ var OrdersController = function ($scope, ProductsService, CustomersService, Orde
             OrdersFactory.addOrder(newOrder, function (newOrder, newStockAfterorder) {
                 $scope.orders.push(newOrder);
                 $scope.newOrder = {};
-                if (newStockAfterorder <= 0) {
-                    $scope.products.splice($scope.products.indexOf($scope.newOrder.product), 1);
-                }
-            });
+                $scope.products[indexOf($scope.newOrder.product)].stock = newStockAfterorder;
+            })
         } else {
             flashError("fields missing");
         }

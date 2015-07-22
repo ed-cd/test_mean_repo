@@ -6,7 +6,7 @@
         <br/>
         <label for="orderAmmount">Order</label>
         <select ng-model="newOrder.ammount" ng-options="n for n in [] | RangeFilter:1:10"></select>
-        <select ng-model="newOrder.product" ng-options="product.name for product in products"></select>
+        <select ng-model="newOrder.product" ng-options="product.name for product in products | FieldGreaterThanFilter:'stock':0"></select>
         <input type="submit" value="Order" ng-click="addOrder()" />
         <span class="error">{{addOrderError}}</span>
     </form>
@@ -36,7 +36,7 @@
                 <span ng-bind="order.ammount" />
             </td>
             <td>
-                {{order.dateCreated | date:"mediumDate"}}
+                <span ng-bind="order.dateCreated | date:'mediumDate'" />
             </td>
         </tr>
     </table>

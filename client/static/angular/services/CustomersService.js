@@ -2,7 +2,7 @@ var CustomersService = function ($http) {
     var customers = null;
 
     this.getCustomers = function (callback) {
-        if (customers == null) {
+        if (customers === null) {
             $http.get('/customers').success(function (output) {
                 customers = output;
                 callback(customers);

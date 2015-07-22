@@ -8,4 +8,6 @@ myAppModule.service("CustomersService", CustomersService);
 myAppModule.factory("OrdersFactory", OrdersFactory);
 myAppModule.controller('CustomersController', CustomersController);
 myAppModule.controller('OrdersController', OrdersController);
+myAppModule.controller('ProductsController', ProductsController);
 myAppModule.filter('RangeFilter', RangeFilter);
+myAppModule.filter('FieldGreaterThanFilter', FieldGreaterThanFilter);

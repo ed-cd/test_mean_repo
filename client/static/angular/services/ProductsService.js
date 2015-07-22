@@ -1,14 +1,27 @@
 var ProductsService = function ($http) {
-    var products = null;
+    var availiableProducts = null;
 
-    this.getProducts = function (callback) {
-        if (products === null) {
-            $http.get('/products').success(function (output) {
-                products = output;
-                callback(products);
+    this.getAvailiableProducts = function (callback) {
+        if (availiableProducts === null) {
+            $http.get('/availiableProducts').success(function (output) {
+                availiableProducts = output;
+                callback(availiableProducts);
             })
         } else {
-            callback(products);
+            callback(availiableProducts);
         }
+    }
+
+    this.addProduct = function (newProduct, successCallback, errorCallback) {
+        $http.post("/addProduct", newProduct).success(function (data) {
+            if (data.hasOwnProperty("errors")) {
+                errorCallback(data);
+            } else {
+                availiableProducts.push(newProduct);
+                successCallback();
+            }
+        }).error(function (data) {
+            errorCallback(data);
+        })
     }
 }
